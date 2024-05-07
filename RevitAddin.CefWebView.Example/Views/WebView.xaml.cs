@@ -28,7 +28,6 @@ namespace RevitAddin.CefWebView.Example.Views
                         await Task.Delay(1000);
                         var data = await Browser.InvokeScriptAsync<string>("GetData");
                         Console.WriteLine(data);
-
                         await Browser.InvokeScriptAsync("SetData", null, "Hello youtube!");
                     });
                 }
