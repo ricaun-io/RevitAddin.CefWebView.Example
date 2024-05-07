@@ -6,12 +6,12 @@ namespace RevitAddin.CefWebView.Example.Views.Extensions
 {
     public static class CefBrowserExtension
     {
-        public static async Task InvokeScriptAsync(this IChromiumWebBrowserBase browser, string script, Action onSuccess = null, params object[] args)
+        public static async Task InvokeScriptAsync(this IWebBrowser browser, string script, Action onSuccess = null, params object[] args)
         {
             await browser.InvokeScriptAsync<object>(script, (o) => { onSuccess?.Invoke(); }, args);
         }
 
-        public static async Task<T> InvokeScriptAsync<T>(this IChromiumWebBrowserBase browser, string script, Action<T> onSuccess = null, params object[] args)
+        public static async Task<T> InvokeScriptAsync<T>(this IWebBrowser browser, string script, Action<T> onSuccess = null, params object[] args)
         {
             var javascriptResponse = await browser.EvaluateScriptAsync(script, args);
             if (javascriptResponse.Success)
